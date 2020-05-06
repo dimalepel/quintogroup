@@ -375,6 +375,7 @@ img {
 .company-item--inverse .company-item__picture {
   right: 50%;
   left: initial;
+  text-align: right;
 }
 .company-item__picture img {
   height: 100%;
