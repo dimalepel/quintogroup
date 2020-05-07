@@ -9,17 +9,20 @@
   if (menuOpen) {
     let body = document.querySelector('body');
     let languageNavigation = document.getElementById('language-navigation');
+    let menuClose = document.getElementById('close-menu');
+
     menuOpen.addEventListener('click', function (event) {
       event.preventDefault();
-      if (hasClass(menuOpen, 'active')) {
-        this.classList.remove('active');
-        languageNavigation.classList.remove('open');
-        body.classList.remove('overflow');
-      } else {
-        this.classList.add('active');
-        languageNavigation.classList.add('open');
-        body.classList.add('overflow');
-      }
+
+      languageNavigation.classList.add('open');
+      body.classList.add('overflow');
+    });
+
+    menuClose.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      languageNavigation.classList.remove('open');
+      body.classList.remove('overflow');
     });
   }
 
@@ -74,9 +77,17 @@
   /* Плавный скролл */
   let listNav = document.getElementsByClassName('js--scroll-link');
   if(listNav) {
+    let body = document.querySelector('body');
+    let languageNavigation = document.getElementById('language-navigation');
+
     for(let i = 0; i < listNav.length; i++) {
       listNav[i].addEventListener('click', function(event) {
         event.preventDefault();
+
+        if (hasClass(body, 'overflow')) {
+          body.classList.remove('overflow');
+          languageNavigation.classList.remove('open');
+        }
 
         let section, heightPlus;
         heightPlus = 0;
